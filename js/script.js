@@ -3,12 +3,8 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance:
-// Check the "Project Resources" section of the project instructions
-// Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
 /***
- * `quotes` array
+ * Array of motivation quotes
  ***/
 
 const quotes = [
@@ -64,7 +60,7 @@ const quotes = [
 ];
 
 /***
- * `getRandomQuote` function
+ *  Generation of a random number that is then used to select a object from the quotes array
  ***/
 
 function getRandomQuote() {
@@ -74,42 +70,24 @@ function getRandomQuote() {
 }
 
 /***
- * `printQuote` function button to generate new random quote
+ * function button to generate new random quote andd call the get getRandomQuote funtion when show anther quote button is pushed
  ***/
 function printQuote() {
-  // 1. Create a variable that calls the getRandomQuote()
-  // function
-
   let fetchQuote = getRandomQuote();
 
-  // 2. Create a variable that initiates your HTML string with
-  // the first two <p></p> elements, their classNames,
-  // and the quote and source properties, but leave off
-  // the second closing `</p>` tag for now
+  // if statments to control what html is displayed based on data availble in the objects
 
   let htmlQuote = `<p class="quote">${fetchQuote.quote}</p> <p class="source">${fetchQuote.source}`;
 
-  // 3. Use an if statement to check if the citation property
-  // exists, and if it does, concatenate a <span></span>
-  // element, appropriate className, and citation property
-  // to the HTML string
   let htmlCitation;
   if (fetchQuote.citation) {
     htmlCitation = `<span class="citation">${fetchQuote.citation}</span>`;
   }
 
-  // 4. Use an if statement to check of the year property exists,
-  // and if it does, concatenate a <span></span> element,
-  // appropriate className, and year property to the HTML
-  //string
-
   let htmlYear;
   if (fetchQuote.year) {
     htmlYear = `<span class="year">${fetchQuote.year}</span>`;
   }
-
-  // 5. After the two if statements, concatenate the closing </p>
-  // tag to the HTML string
 
   if (!htmlCitation && !htmlYear) {
     html = `${htmlQuote} </p>`;
@@ -121,16 +99,14 @@ function printQuote() {
     html = `${htmlQuote} ${htmlCitation} ${htmlYear} </p>`;
   }
 
-  document.getElementById("quote-box").innerHTML = `${html}`;
-  console.log(html);
+  // final diplay transposed to the "quote-box" id element on the HTML
 
-  // 6. set the innerHTML of the quote-box div to equal the
-  // complete HTML string
+  document.getElementById("quote-box").innerHTML = `${html}`;
   return fetchQuote;
 }
 
 /***
- * click event listener for the print quote button
+ * event listener for the print quote button
  ***/
 
 document
