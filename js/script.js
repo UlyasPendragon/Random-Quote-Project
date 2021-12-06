@@ -20,8 +20,8 @@ const quotes = [
     year: "1995",
   },
   {
-    quote: `Your time is limited, so don\’t waste it living someone else’s life. Don’t be trapped by dogma – which is living with the results of other people’s thinking.`,
-    source: "Steve Jobs",
+    quote: `What you get by achieving your goals is not as important as what you become by achieving your goals.`,
+    source: "Henry David Thoreau",
     citation: "",
     year: "1966",
   },
@@ -32,16 +32,34 @@ const quotes = [
     year: "",
   },
   {
-    quote: "4",
-    source: "4",
-    citation: "4",
-    year: "4",
+    quote: `If the plan doesn’t work, change the plan, but never the goal.`,
+    source: "Author Unknown",
+    citation: "",
+    year: "",
   },
   {
-    quote: "5",
-    source: "5",
-    citation: "5",
-    year: "5",
+    quote: `Life is full of beauty. Notice it. Notice the bumble bee, the small child, and the smiling faces. Smell the rain, and feel the wind. Live your life to the fullest potential, and fight for your dreams.`,
+    source: "Ashley Smith",
+    citation: "www.positivityblog.com",
+    year: "2011",
+  },
+  {
+    quote: `Like success, failure is many things to many people. With positive mental attitude, failure is a learning experience, a rung on the ladder, and a plateau at which to get your thoughts in order to prepare to try again.`,
+    source: "W. Clement Stone",
+    citation: "www.positivityblog.com",
+    year: "2000",
+  },
+  {
+    quote: `Never limit yourself because of others’ limited imagination; never limit others because of your own limited imagination.`,
+    source: "Mae Jemison",
+    citation: "www.positivityblog.com",
+    year: "1998",
+  },
+  {
+    quote: `Ever tried. Ever failed. No matter. Try Again. Fail again. Fail better.`,
+    source: "Samuel Beckett",
+    citation: "",
+    year: "",
   },
 ];
 
@@ -76,10 +94,8 @@ function printQuote() {
   // element, appropriate className, and citation property
   // to the HTML string
   let htmlCitation;
-  if (fetchQuote.citation !== undefined) {
+  if (fetchQuote.citation) {
     htmlCitation = `<span class="citation">${fetchQuote.citation}</span>`;
-  } else {
-    htmlCitation = ``;
   }
 
   // 4. Use an if statement to check of the year property exists,
@@ -88,16 +104,25 @@ function printQuote() {
   //string
 
   let htmlYear;
-  if (fetchQuote.year !== undefined) {
+  if (fetchQuote.year) {
     htmlYear = `<span class="year">${fetchQuote.year}</span>`;
   }
 
   // 5. After the two if statements, concatenate the closing </p>
   // tag to the HTML string
 
-  document.getElementById(
-    "quote-box"
-  ).innerHTML = `${htmlQuote} ${htmlCitation} ${htmlYear} </p>`;
+  if (!htmlCitation && !htmlYear) {
+    html = `${htmlQuote} </p>`;
+  } else if (!htmlCitation) {
+    html = `${htmlQuote} ${htmlYear} </p>`;
+  } else if (!htmlYear) {
+    html = `${htmlQuote} ${htmlCitation}</p>`;
+  } else {
+    html = `${htmlQuote} ${htmlCitation} ${htmlYear} </p>`;
+  }
+
+  document.getElementById("quote-box").innerHTML = `${html}`;
+  console.log(html);
 
   // 6. set the innerHTML of the quote-box div to equal the
   // complete HTML string
